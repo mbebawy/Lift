@@ -1,0 +1,41 @@
+<div ui-content-for="title">
+  <span>Login</span>
+</div>
+
+<form ng-controller="loginCtrl" >
+
+    <form role="form" ng-submit='login()'>
+    <fieldset>
+     
+        <div class="form-group has-success has-feedback">
+          <label class="lable-text" >Email</label>
+          <input type="email"
+                 ng-model="username"
+                 class="form-control"
+                 placeholder="Enter email">
+        </div>
+
+        <div class="form-group">
+          <label class="lable-text">Password</label>
+          <input type="password" 
+                 class="form-control"
+                 placeholder="Password">
+        </div>
+
+        <div class="form-group">
+          <label class="lable-text">Remember Me</label>
+          <ui-switch 
+            ng-model='rememberMe'></ui-switch>
+        </div>
+    </fieldset>
+    <hr>
+
+    <button class="btn btn-primary btn-block">
+      Login
+    </button>
+
+    <div ui-content-for="navbarAction">
+      <a class='btn' ng-click='login()'>Login</a>
+    </div>
+
+</form>
