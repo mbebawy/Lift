@@ -2,7 +2,9 @@ angular.module("common").service("security", [function(){
     'user strict';
     var self = this;
     //var server = "24.62.238.189";
-    var server = "bebawy-pc";
+    var server = "localhost";
+    self.token = null;
+
     self.publicUser = {
         userId: "7d0859f2-640f-4360-a0d0-113aa7c0b549",
         token: null
@@ -10,7 +12,7 @@ angular.module("common").service("security", [function(){
     };
     self.activeUser = angular.copy(self.publicUser);
     self.userId = "7d0859f2-640f-4360-a0d0-113aa7c0b549";
-    self.baseUrl = "https://" + server + "/RESTService/api/";
+    self.baseUrl = "https://" + server + "/LiftRESTService/api/";
     self.imagesBaseUrl = "https://" + server + "/RESTService//";
 
  //self.baseUrl ="http://localhost/restService1/api/";

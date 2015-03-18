@@ -1,10 +1,10 @@
-angular.module("common").service("serviceBase", function ($http, security, util) {
+angular.module("common").service("baseService", ["$http", "security", "util", "$q", function ($http, security, util, $q) {
     "use strict";
     var self = this;
     self.callBacks = [];
-    self.getRequest = function (resourceName, id, callBack) {
+    self.getRequest = function (resourceName, id) {
         var callId = util.getGuid();
-        self.callBacks.push({callId: callId, callBack: callBack});
+       
         var url = null;
         if (id !== undefined && id !== null) {
             url = security.baseUrl + resourceName+ "/"+id;
@@ -20,6 +20,8 @@ angular.module("common").service("serviceBase", function ($http, security, util)
             },
                 contentType: 'application/json'
             };
+
+         var deferred = $q.defer();
         
          $http({
             url: url + "##" + callId,
@@ -27,31 +29,15 @@ angular.module("common").service("serviceBase", function ($http, security, util)
             headers: {'Content-Type': 'application/json', "Token": security.activeUser.token}
         }).success(function (data, status, headers, config) {
              
-                var retCallId = self.getCallId(config.url);
-             
-                for(var i in self.callBacks)
-                {
-                    if(self.callBacks[i].callId === retCallId)
-                    {
-                        self.callBacks[i].callBack(data, null);
-                        self.callBacks.splice(i, 1);
-                        break;
-                    }
-                }
+              
+                 deferred.resolve(data);
               
             }).error(function (data, status, headers, config) {
                var retCallId = self.getCallId(config.url);
-             
-                for(var i in self.callBacks)
-                {
-                    if(self.callBacks[i].callId === retCallId)
-                    {
-                        self.callBacks[i].callBack(null, status);
-                        self.callBacks.splice(i, 1);
-                        break;
-                    }
-                }
+             	deferred.reject(status);
+              
             });
+             return deferred.promise;
         
         
     }
@@ -67,54 +53,59 @@ angular.module("common").service("serviceBase", function ($http, security, util)
             return null;
         }
     }
-    
-    self.postRequest = function(resourceName, data, callBack){
-       
+    self.getToken = function(data, callBack){
+        var deferred = $q.defer();
         var callId = util.getGuid();
-        
-        self.callBacks.push({callId: callId, callBack: callBack});
+        data.grant_type = "password"
+
+        var url = security.baseUrl.replace("api/", "") +"token" ;
+
+
+
+        $http({
+            url: url +"##" + callId,
+            method: "POST",
+            data: data,
+            headers: {'Content-Type': 'application/json'}, transformRequest: function (obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            }
+        }).success(function (token, status, headers, config) {
+
+            deferred.resolve(token);
+        }).error(function (data, status, headers, config) {
+            deferred.reject(status);
+        });
+        return deferred.promise;
+
+
+    };
+    self.postRequest = function(resourceName, data, callBack){
+        var deferred = $q.defer();
+        var callId = util.getGuid();
+      
         
         var url = security.baseUrl + resourceName ;
         
-        var config = {headers: {
-                'Authorization' : "Bearer ",
-                'Accept' : '*/*'
-            },
-                contentType: 'application/json'
-            };
+
         
          $http({
             url: url +"##" + callId,
             method: "POST",
             data: data,
-            headers: {'Content-Type': 'application/json', "Token": security.activeUser.token}
+            headers: {'Content-Type': 'application/x-www-form-urlencoded', 'grant_type' : 'password', "Token": security.activeUser.token}
         }).success(function (data, status, headers, config) {
-               var retCallId = self.getCallId(config.url);
-             
-                for(var i in self.callBacks)
-                {
-                    if(self.callBacks[i].callId === retCallId)
-                    {
-                        self.callBacks[i].callBack(data, null);
-                        self.callBacks.splice(i, 1);
-                        break;
-                    }
-                }
+               
+                deferred.resolve(data);
             }).error(function (data, status, headers, config) {
-                var retCallId = self.getCallId(config.url);
-                for(var i in self.callBacks)
-                {
-                    if(self.callBacks[i].callId === retCallId)
-                    {
-                        self.callBacks[i].callBack(null, status);
-                        self.callBacks.splice(i, 1);
-                        break;
-                    }
-                }
+                deferred.reject(status);
             });
+        return deferred.promise;		
         
         
-    }
+    };
     self.putRequest = function(resourceName, data, callBack){
    
          var callId = util.getGuid();
@@ -215,4 +206,4 @@ angular.module("common").service("serviceBase", function ($http, security, util)
         
        
 
-});
+}]);

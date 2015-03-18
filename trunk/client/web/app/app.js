@@ -6,12 +6,12 @@ angular.module('myApp', [
   'myApp.version',
   'mobile-angular-ui',
   'mobile-angular-ui.core.capture',
-  'login'
+  'login',
+  'common',
+    'home'
 ]).
 config(['$routeProvider', function($routeProvider) {
-	  $routeProvider.when('/', { templateUrl:'modules/login/views/loginView.html'}).
-            /*when('/edit/:projectId', {controller:EditCtrl, templateUrl:'detail.html'}).
-            when('/new', {controller:CreateCtrl, templateUrl:'detail.html'}).*/
-            otherwise({redirectTo:'/', templateUrl:'modules/login/views/loginView.html'});
+	  $routeProvider.when('/', { templateUrl:'modules/home/views/homeView.html'});
+
  
 }]);
