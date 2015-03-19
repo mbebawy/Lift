@@ -8,7 +8,8 @@ angular.module('myApp', [
   'mobile-angular-ui.core.capture',
   'login',
   'common',
-    'home'
+    'home',
+    'users'
 ]).
 config(['$routeProvider', function($routeProvider) {
 	  $routeProvider.when('/', { templateUrl:'modules/home/views/homeView.html'});

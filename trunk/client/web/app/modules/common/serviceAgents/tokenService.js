@@ -17,4 +17,5 @@ angular.module('common').service("tokenService", ["baseService", "$q", function(
 		return deferred.promise;
 	};
 
-}])
+
+}]);

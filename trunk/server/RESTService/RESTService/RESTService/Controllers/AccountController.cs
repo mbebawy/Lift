@@ -24,7 +24,7 @@ namespace RESTService.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IHttpActionResult> Register(User userModel)
+        public async Task<IHttpActionResult> Register(UserAuth userModel)
         {
             if (!ModelState.IsValid)
             {

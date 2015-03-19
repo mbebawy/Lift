@@ -1,0 +1,28 @@
+<div ng-controller="usersCtrl">
+    <form  ng-submit="searchUsers()">
+        <fieldset>
+
+            <div class="form-group has-success has-feedback">
+                <input
+                        ng-model="searchKeyword"
+                        class="form-control"
+                        placeholder="Enter Name, Phone">
+            </div>
+            <button class="btn btn-primary pull-right" ng-click='searchUsers()'>
+                Search
+            </button>
+
+
+
+        </fieldset>
+        <hr>
+
+        <div class="list-group" ui-turn-off="uiSidebarLeft">
+
+            <a class="list-group-item" ng-class="{'active': selectedUser.userId === user.userId}" ng-repeat="user in users" ng-click="userSelected(user)">{{user.firstName}} {{user.lastName}}<i class="fa fa-chevron-right pull-right"></i></a>
+        </div>
+
+
+
+    </form>
+</div>

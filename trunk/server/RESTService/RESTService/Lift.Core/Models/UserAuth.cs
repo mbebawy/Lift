@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lift.Core.Models
 {
-    public class User
+    public class UserAuth
     {
         [Required]
         [Display(Name = "User name")]
@@ -23,5 +23,9 @@ namespace Lift.Core.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string OldPassword { get; set; }
+
+
     }
 }

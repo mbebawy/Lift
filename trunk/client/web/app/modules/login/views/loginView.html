@@ -1,41 +1,37 @@
 <div ng-controller="loginCtrl">
-<div ui-content-for="title">
-  <span>Login</span>
-</div>
-<form  >
 
     <form  >
-    <fieldset>
-     
-        <div class="form-group has-success has-feedback">
-          <label class="lable-text" >Email</label>
-          <input 
-                 ng-model="userName"
-                 class="form-control"
-                 placeholder="Enter email">
-        </div>
+        <fieldset>
 
-        <div class="form-group">
-          <label class="lable-text">Password</label>
-          <input type="password" 
-                 class="form-control"
-                 placeholder="Password"
-                 ng-model="password">
-        </div>
+            <div class="form-group has-success has-feedback">
+              <label class="lable-text" >Email</label>
+              <input
+                     ng-model="userName"
+                     class="form-control"
+                     placeholder="Enter email">
+            </div>
 
-        <div class="form-group">
-          <label class="lable-text">Remember Me</label>
-          <ui-switch 
-            ng-model='rememberMe'></ui-switch>
-        </div>
-    </fieldset>
-    <hr>
+            <div class="form-group">
+              <label class="lable-text">Password</label>
+              <input type="password"
+                     class="form-control"
+                     placeholder="Password"
+                     ng-model="password">
+            </div>
 
-    <button class="btn btn-primary btn-block" ng-click='login()'>
-      Login
-    </button>
+            <div class="form-group">
+              <label class="lable-text">Remember Me</label>
+              <ui-switch
+                ng-model='rememberMe'></ui-switch>
+            </div>
+        </fieldset>
+        <hr>
 
-   
+        <button class="btn btn-primary btn-block" ng-click='login()'>
+          Login
+        </button>
 
-</form>
-<div>
+
+
+    </form>
+</div>

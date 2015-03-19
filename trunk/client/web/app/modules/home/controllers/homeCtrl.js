@@ -1,4 +1,4 @@
-angular.module("home").controller("homeCtrl",["$scope", "security", function($scope, security){
+angular.module("home").controller("homeCtrl",["$scope", "security","events", function($scope, security, events){
     var init = function(){
         $scope.views = [{
                 url: "modules/login/views/loginView.html"
@@ -7,6 +7,7 @@ angular.module("home").controller("homeCtrl",["$scope", "security", function($sc
                 url:"modules/home/views/homeStartView.html"
             }];
         $scope.activeView = $scope.views[0];
+        $scope.prevView = null;
 
         $scope.$watch(function(){
             return security.token;
@@ -15,6 +16,10 @@ angular.module("home").controller("homeCtrl",["$scope", "security", function($sc
                 $scope.activeView = $scope.views[1];
             }
         }, true);
+        events.subscribeToEvent($scope, "mainContentViewChanged", function(view){
+            $scope.prevView = angular.copy($scope.activeView);
+            $scope.activeView = view;
+        })
     };
 
 
