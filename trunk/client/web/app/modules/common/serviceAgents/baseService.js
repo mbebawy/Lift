@@ -1,11 +1,14 @@
 angular.module("common").service("baseService", ["$http", "security", "util", "$q", function ($http, security, util, $q) {
     "use strict";
     var self = this;
-    var headers= {
-        'Authorization': "Bearer "+ security.token.access_token,
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-        'grant_type' : 'password'
+    var getHeaders = function(){
+        var token =(security.token !== undefined && security.token !== null)? security.token.access_token: null;
+        return {
+            'Authorization': "Bearer "+ token,
+            'Accept': '*/*',
+            'Content-Type': 'application/json',
+            'grant_type' : 'password'
+        };
     };
     self.getRequest = function (resourceName, id) {
         var callId = util.getGuid();
@@ -20,7 +23,7 @@ angular.module("common").service("baseService", ["$http", "security", "util", "$
         $http({
             url: url + "##" + callId,
             method: "GET",
-            headers: headers
+            headers: getHeaders()
         }).success(function (data, status, headers, config) {
             deferred.resolve(data);
         }).error(function (data, status, headers, config) {
@@ -73,7 +76,7 @@ angular.module("common").service("baseService", ["$http", "security", "util", "$
             url: url +"##" + callId,
             method: "POST",
             data: data,
-            headers: headers//{'Content-Type': 'application/x-www-form-urlencoded', 'grant_type' : 'password', "Token": security.activeUser.token}
+            headers: getHeaders()//{'Content-Type': 'application/x-www-form-urlencoded', 'grant_type' : 'password', "Token": security.activeUser.token}
         }).success(function (data, status, headers, config) {
                
                 deferred.resolve(data);
@@ -94,7 +97,7 @@ angular.module("common").service("baseService", ["$http", "security", "util", "$
             url: url+"##" + callId,
             method: "PUT",
             data: data,
-            headers: headers
+            headers: getHeaders()
         }).success(function (data, status, headers, config) {
 
                  deferred.resolve(data);
@@ -113,7 +116,7 @@ angular.module("common").service("baseService", ["$http", "security", "util", "$
         $http({
             url: url +"/" + id+"##" + callId,
             method: "DELETE",           
-            headers: headers
+            headers: getHeaders()
         }).success(function (data, status, headers, config) {
 
                  deferred.resolve(data);

@@ -5,6 +5,7 @@ using RESTService.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -39,6 +40,13 @@ namespace RESTService.Auth
             IdentityUser user = await _userManager.FindAsync(userName, password);
 
             return user;
+        }
+        public async Task<IList<Claim>> GetClaims(string userId)
+        {
+           
+            var claims = await _userManager.GetClaimsAsync(userId);
+
+            return claims;
         }
 
         public void Dispose()

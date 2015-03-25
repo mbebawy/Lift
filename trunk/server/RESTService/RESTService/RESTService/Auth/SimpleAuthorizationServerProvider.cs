@@ -30,13 +30,19 @@ namespace RESTService.Auth
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                var claims = await _repo.GetClaims(user.Id);
+                foreach (var claim in claims)
+                {
+                    identity.AddClaim(claim);
+                }
+                //identity.AddClaim(new Claim("sub", context.UserName));
+                //identity.AddClaim(new Claim("role", "user"));
+
+                context.Validated(identity);
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            context.Validated(identity);
+          
 
         }
     }
