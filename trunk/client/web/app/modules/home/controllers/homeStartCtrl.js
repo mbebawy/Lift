@@ -5,7 +5,11 @@ angular.module("home").controller("homeStartCtrl", ["$scope","events", function(
     var self = this;
     $scope.views = [{
         url: "modules/users/views/usersView.html",
-        name: "Users"
+        name: "Users",
+        actions: [{
+            displayName: "Add User",
+            action: addNewUser
+        }]
     }];
     $scope.selectedView = null;
     var init = function(){
@@ -15,6 +19,9 @@ angular.module("home").controller("homeStartCtrl", ["$scope","events", function(
         $scope.selectedView = view;
         events.publishEvent("mainContentViewChanged", view);
     };
+    var addNewUser = function(args){
+        alert("add new user Clicked")
+    }
 
     init();
 }]);

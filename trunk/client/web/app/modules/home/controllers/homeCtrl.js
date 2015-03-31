@@ -1,10 +1,13 @@
 angular.module("home").controller("homeCtrl",["$scope", "security","events", function($scope, security, events){
     var init = function(){
+
         $scope.views = [{
-                url: "modules/login/views/loginView.html"
+                url: "modules/login/views/loginView.html",
+                displayName: "login"
             },
             {
-                url:"modules/home/views/homeStartView.html"
+                url:"modules/home/views/homeStartView.html",
+                displayName: "Home"
             }];
         $scope.activeView = $scope.views[0];
         $scope.prevView = null;

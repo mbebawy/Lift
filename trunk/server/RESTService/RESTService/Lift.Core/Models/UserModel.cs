@@ -21,7 +21,7 @@ namespace Lift.Core.Models
         public string Zip { get; set; }
         public string Country { get; set; }
         public string PhoneNumber { get; set; }
-        public string CompanyName { get; set; }
+        public List<string> Occupations { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
@@ -31,6 +31,8 @@ namespace Lift.Core.Models
         public string Pin { get; set; }
         public Nullable<int> RoleId { get; set; }
         public List<Claim> Claims { get; set; }
+
+        public Nullable<Guid> Users { get; set; }
         
     }
 }

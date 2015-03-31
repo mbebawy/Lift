@@ -1,3 +1,40 @@
 <div ng-controller="homeCtrl">
-    <div data-ng-include="activeView.url"></div>
+    <div class="navbar navbar-app navbar-absolute-top navbar-brand-center"><!-- Top Navbar -->
+
+        <div class="btn-group pull-left" yield-to="navbarAction" ng-show="activeView.url !== 'modules/login/views/loginView.html'">
+            <div class="btn btn-navbar"><a ng-click="onBack()">Back</a>
+            </div>
+        </div>
+        <div class="navbar-brand navbar-brand-center" yield-to="title">
+            <span>{{activeView.displayName}}</span>
+        </div>
+        <div class="btn-group dropdown pull-right">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                Dropdown
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" >
+                    <a role="menuitem" tabindex="-1">test</a></li>
+
+                <li role="presentation" ng-repeat="action in activeView.actions">
+                    <a role="menuitem" tabindex="-1">{{action.displayName}}</a></li>
+                <!-- ... -->
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="navbar navbar-app navbar-absolute-bottom"><!-- Bottom Navbar --></div>
+
+    <!-- App body -->
+
+    <div class='app-body scrollable' style="background-color: #ffffff">
+        <div class="scrollable-content">
+            <div class="app-content" data-ng-include="activeView.url"></div>
+        </div>
+
+    </div>
 </div>
+

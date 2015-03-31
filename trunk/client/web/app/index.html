@@ -36,22 +36,7 @@
   <div class="sidebar sidebar-right"><!-- ... --></div>
 
   <div class="app">
-    <div class="navbar navbar-app navbar-absolute-top"><!-- Top Navbar -->
-       <div ui-yield-to="title" class="navbar-brand">
-          <span>Default Title</span>
-      </div>
-    </div>
-    
-    <div class="navbar navbar-app navbar-absolute-bottom"><!-- Bottom Navbar --></div>
-
-    <!-- App body -->
-
-    <div class='app-body scrollable' >
-         <div class="scrollable-content">
-              <ng-view class="app-content"></ng-view>  
-         </div>
-     
-    </div>
+      <ng-view ></ng-view>
   </div><!-- ~ .app -->
 
   <!-- Modals and Overlays -->
