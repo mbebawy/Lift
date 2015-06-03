@@ -25,7 +25,7 @@ namespace RESTService.Controllers
         {
             
             var identity = User.Identity;
-            
+            var userID = Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(identity);
 
             return _repo.GetUsers(request);
         }

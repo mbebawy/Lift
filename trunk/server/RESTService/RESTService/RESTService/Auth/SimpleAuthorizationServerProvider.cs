@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
@@ -36,14 +37,28 @@ namespace RESTService.Auth
                 {
                     identity.AddClaim(claim);
                 }
-                //identity.AddClaim(new Claim("sub", context.UserName));
-                //identity.AddClaim(new Claim("role", "user"));
+                identity.AddClaim(new Claim("sub", context.UserName));
+                identity.AddClaim(new Claim("role", "user"));
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+               
 
                 context.Validated(identity);
+              
+
+                
+
+               
             }
 
           
 
+        }
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.Current.GetOwinContext().Authentication;
+            }
         }
     }
 }
