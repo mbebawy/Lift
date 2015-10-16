@@ -8,21 +8,33 @@
         <div class="navbar-brand navbar-brand-center" yield-to="title">
             <span>{{activeView.displayName}}</span>
         </div>
+
+    
+
+       <!--<div dropdown-select="ddSelectOptions"
+        dropdown-model="ddSelectSelected"
+        dropdown-item-label="text" >
+    </div>
+      
         <div class="btn-group dropdown pull-right">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                Dropdown
+            <button class="btn btn-default dropdown-toggle" type="button" id="actionsMenu" data-toggle="dropdown" aria-expanded="true">
+                Action
                 <span class="caret"></span>
             </button>
 
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="actionsMenu" style="z-index=10000">
                 <li role="presentation" >
+                    <a role="menuitem" tabindex="-1">test</a>
+                    </li>
+                <li role="presentation" >
+                    <a role="menuitem" tabindex="-1">test</a></li><li role="presentation" >
                     <a role="menuitem" tabindex="-1">test</a></li>
 
                 <li role="presentation" ng-repeat="action in activeView.actions">
                     <a role="menuitem" tabindex="-1">{{action.displayName}}</a></li>
-                <!-- ... -->
+                <!-- ...
             </ul>
-        </div>
+        </div> -->
 
     </div>
 

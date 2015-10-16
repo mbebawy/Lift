@@ -1,4 +1,5 @@
 ﻿using Lift.Core.Models;
+using Lift.Core.Repostories;
 using Microsoft.AspNet.Identity;
 using RESTService.Auth;
 using System;
@@ -12,13 +13,14 @@ using System.Web.Http;
 namespace RESTService.Controllers
 {
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : ControllerBase
     {
         private AuthRepository _repo = null;
-
+       
         public AccountController()
         {
             _repo = new AuthRepository();
+           
         }
 
         // POST api/Account/Register
@@ -31,7 +33,9 @@ namespace RESTService.Controllers
                 return BadRequest(ModelState);
             }
 
+
             IdentityResult result = await _repo.RegisterUser(userModel);
+            
 
             IHttpActionResult errorResult = GetErrorResult(result);
 

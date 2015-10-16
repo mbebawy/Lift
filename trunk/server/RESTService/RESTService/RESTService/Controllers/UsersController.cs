@@ -15,7 +15,7 @@ using System.Web.Http;
 namespace RESTService.Controllers
 {
     [RoutePrefix("api/Users")]
-    public class UsersController : ApiController
+    public class UsersController : ControllerBase
     {
         UsersRepository _repo = new UsersRepository();
         private UserManager<IdentityUser> _userManager;
@@ -27,7 +27,14 @@ namespace RESTService.Controllers
             var identity = User.Identity;
             var userID = Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(identity);
 
-            return _repo.GetUsers(request);
+            return _repo.GetUsers(request, UserId);
+        }
+        [HttpPut]
+        [Authorize]
+        public void PutUser(UserModel user)
+        {
+            user.UserId = Guid.NewGuid();
+            _repo.CreateUser(user, UserId);
         }
     }
 }

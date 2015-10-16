@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lift.Core.Models
 {
-    public class UserAuth
+    public class UserAuth: UserModel
     {
         [Required]
         [Display(Name = "User name")]

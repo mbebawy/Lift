@@ -1,4 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SaintsCoreModelStoreContainer" CdmEntityContainer="CoreEntities" />
+  <EntityContainerMapping StorageEntityContainer="SaintsCoreModelStoreContainer" CdmEntityContainer="CoreEntities">
+    <FunctionImportMapping FunctionImportName="Claims_Get_ByRole" FunctionName="SaintsCoreModel.Store.Claims_Get_ByRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.Claims_Get_ByRole_Result">
+          <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Phones_Add" FunctionName="SaintsCoreModel.Store.Phones_Add" />
+    <FunctionImportMapping FunctionImportName="Roles_Get" FunctionName="SaintsCoreModel.Store.Roles_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.Roles_Get_Result">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Session_Create" FunctionName="SaintsCoreModel.Store.Session_Create" />
+    <FunctionImportMapping FunctionImportName="Session_Edit" FunctionName="SaintsCoreModel.Store.Session_Edit" />
+    <FunctionImportMapping FunctionImportName="User_Add" FunctionName="SaintsCoreModel.Store.User_Add" />
+    <FunctionImportMapping FunctionImportName="User_Get" FunctionName="SaintsCoreModel.Store.User_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.User_Get_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="User_Add_Email" FunctionName="SaintsCoreModel.Store.User_Add_Email" />
+    <FunctionImportMapping FunctionImportName="User_Add_Occupation" FunctionName="SaintsCoreModel.Store.User_Add_Occupation" />
+    <FunctionImportMapping FunctionImportName="User_Add_Phone" FunctionName="SaintsCoreModel.Store.User_Add_Phone" />
+  </EntityContainerMapping>
 </Mapping>

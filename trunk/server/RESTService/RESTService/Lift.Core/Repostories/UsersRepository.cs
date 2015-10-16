@@ -14,24 +14,48 @@ namespace Lift.Core.Repostories
     {
         private CoreEntities _db;
 
-        public List<UserModel> GetUsers(GetUsersRequest req)
+        public List<UserModel> GetUsers(GetUsersRequest req, Guid currentUser)
         {
             var users = new List<UserModel>();
             users.Add(new UserModel
             {
                 FirstName = "Mina",
-                LastName = "Botros"
+                LastName = "Botros 1"
             });
             return users;
         }
 
-        public void CreateUser(UserModel user)
+        public void CreateUser(UserModel user, Guid currentUserId)
         {
-            //Add to Address
-            //Add to Profile
-            // Add to Phone
+            using(var _db = new CoreEntities()){
+                using (var dbContextTransaction = _db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        _db.User_Add(user.UserId, user.FirstName, user.LastName, user.MiddleName, user.DateOfBirth, user.PlaceOfBirth, currentUserId, Guid.NewGuid(), user.Address1,user.Address2,
+                            user.City, user.State, user.Zip, user.Zip);
 
+                        if(user.Phones != null){
+                            foreach(var phone in user.Phones){
+                                _db.User_Add_Phone(user.UserId, currentUserId, phone.PhoneNumber, phone.PhoneType, phone.Description);
+                            }
+                        }
+                        if (user.Occupations != null)
+                        {
+                            foreach (var oc in user.Occupations)
+                            {
+                                _db.User_Add_Occupation(user.UserId, currentUserId, Guid.NewGuid(), oc,"", DateTime.Now, DateTime.Now, true);
+                            }
+                        }
 
+                        dbContextTransaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContextTransaction.Rollback();
+                    }
+                }    
+            }
         }
         public void CreateClaim(Claim claim)
         {

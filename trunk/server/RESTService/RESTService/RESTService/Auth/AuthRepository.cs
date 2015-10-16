@@ -1,4 +1,5 @@
 ﻿using Lift.Core.Models;
+using Lift.Core.Repostories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RESTService.DataAccess;
@@ -14,23 +15,48 @@ namespace RESTService.Auth
     public class AuthRepository : IDisposable
     {
         private AuthContext _ctx;
-
+        private UsersRepository _userRepo = null; 
         private UserManager<IdentityUser> _userManager;
+
+        public Guid UserId
+        {
+            get
+            {
+                var c = HttpContext.Current.GetOwinContext();
+                var ur = c.Authentication.User;
+                var identity = ur.Identity;
+                return new Guid(Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(identity));
+            }
+        }
 
         public AuthRepository()
         {
+            _userRepo = new UsersRepository();
             _ctx = new AuthContext();
             _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
 
         public async Task<IdentityResult> RegisterUser(UserAuth userModel)
         {
-            IdentityUser user = new IdentityUser
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+
+            IdentityUser us = new IdentityUser
             {
-                UserName = userModel.UserName
+                UserName = userModel.UserName,
+                Id = userModel.UserId.ToString()
+                
+               
             };
 
-            var result = await _userManager.CreateAsync(user, userModel.Password);
+            var result = userManager.Create(us, userModel.Password);
+
+
+            UserAuth userRequest = new UserAuth()
+            {
+                UserId = new Guid(us.Id)
+            };
+            
+            _userRepo.CreateUser(userModel, UserId);
 
             return result;
         }

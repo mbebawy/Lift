@@ -1,4 +1,4 @@
-angular.module("users").controller("usersCtrl", ["$scope", "usersServiceAgent", function($scope, usersServiceAgent){
+angular.module("users").controller("usersCtrl", ["$scope", "usersServiceAgent", "events", function($scope, usersServiceAgent, events){
     $scope.searchKeyword = null;
     $scope.users = [];
     $scope.selectedUser = null;
@@ -17,6 +17,13 @@ angular.module("users").controller("usersCtrl", ["$scope", "usersServiceAgent", 
     };
     $scope.userSelected = function(user){
         $scope.selectedUser = user;
+    };
+    $scope.addUser = function(){
+        var view = {
+                url: "modules/users/views/editUserView.html",
+                displayName: "Add User"
+            };
+        events.publishEvent("mainContentViewChanged", view);
     };
     init();
 

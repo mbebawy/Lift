@@ -4,20 +4,212 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SaintsCoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SaintsCoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="Claims_Get_ByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="roleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Phones_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Roles_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Session_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="IP" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Session_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SessionId" Type="nvarchar" Mode="In" />
+          <Parameter Name="isLogged" Type="bit" Mode="In" />
+          <Parameter Name="isExpired" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="User_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DOB" Type="date" Mode="In" />
+          <Parameter Name="POB" Type="nvarchar" Mode="In" />
+          <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AddressID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="User_Add_Email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailType" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPrimaryEmail" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="User_Add_Occupation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OccupationID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CompnayName" Type="nvarchar" Mode="In" />
+          <Parameter Name="JobTitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="IsCurrentJob" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="User_Add_Phone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneType" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneDescription" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="User_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DOB" Type="date" Mode="In" />
+          <Parameter Name="POB" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="SaintsCoreModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SaintsCoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="CoreEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="CoreEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="Claims_Get_ByRole" ReturnType="Collection(SaintsCoreModel.Claims_Get_ByRole_Result)">
+          <Parameter Name="roleId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Phones_Add">
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="PhoneType" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Roles_Get" ReturnType="Collection(SaintsCoreModel.Roles_Get_Result)" />
+          <FunctionImport Name="Session_Create">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Session_Edit">
+            <Parameter Name="SessionId" Mode="In" Type="String" />
+            <Parameter Name="isLogged" Mode="In" Type="Boolean" />
+            <Parameter Name="isExpired" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="User_Add">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="FName" Mode="In" Type="String" />
+            <Parameter Name="LName" Mode="In" Type="String" />
+            <Parameter Name="MName" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="POB" Mode="In" Type="String" />
+            <Parameter Name="currentUserId" Mode="In" Type="Guid" />
+            <Parameter Name="AddressID" Mode="In" Type="Guid" />
+            <Parameter Name="Address1" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="User_Get" ReturnType="Collection(SaintsCoreModel.User_Get_Result)">
+            <Parameter Name="FName" Mode="In" Type="String" />
+            <Parameter Name="MName" Mode="In" Type="String" />
+            <Parameter Name="LName" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="POB" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="User_Add_Email">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="currentUserId" Mode="In" Type="Guid" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="EmailType" Mode="In" Type="String" />
+            <Parameter Name="IsPrimaryEmail" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="User_Add_Occupation">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="currentUserId" Mode="In" Type="Guid" />
+            <Parameter Name="OccupationID" Mode="In" Type="Guid" />
+            <Parameter Name="CompnayName" Mode="In" Type="String" />
+            <Parameter Name="JobTitle" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IsCurrentJob" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="User_Add_Phone">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="currentUserId" Mode="In" Type="Guid" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="PhoneType" Mode="In" Type="String" />
+            <Parameter Name="PhoneDescription" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Claims_Get_ByRole_Result">
+          <Property Type="Int32" Name="ClaimId" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Roles_Get_Result">
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Description" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="User_Get_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" />
+          <Property Type="String" Name="PlaceOfBirth" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SaintsCoreModelStoreContainer" CdmEntityContainer="CoreEntities" />
+        <EntityContainerMapping StorageEntityContainer="SaintsCoreModelStoreContainer" CdmEntityContainer="CoreEntities" >
+          <FunctionImportMapping FunctionImportName="Claims_Get_ByRole" FunctionName="SaintsCoreModel.Store.Claims_Get_ByRole">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.Claims_Get_ByRole_Result">
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Phones_Add" FunctionName="SaintsCoreModel.Store.Phones_Add" />
+          <FunctionImportMapping FunctionImportName="Roles_Get" FunctionName="SaintsCoreModel.Store.Roles_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.Roles_Get_Result">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Session_Create" FunctionName="SaintsCoreModel.Store.Session_Create" />
+          <FunctionImportMapping FunctionImportName="Session_Edit" FunctionName="SaintsCoreModel.Store.Session_Edit" />
+          <FunctionImportMapping FunctionImportName="User_Add" FunctionName="SaintsCoreModel.Store.User_Add" />
+          <FunctionImportMapping FunctionImportName="User_Get" FunctionName="SaintsCoreModel.Store.User_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.User_Get_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="User_Add_Email" FunctionName="SaintsCoreModel.Store.User_Add_Email" />
+          <FunctionImportMapping FunctionImportName="User_Add_Occupation" FunctionName="SaintsCoreModel.Store.User_Add_Occupation" />
+          <FunctionImportMapping FunctionImportName="User_Add_Phone" FunctionName="SaintsCoreModel.Store.User_Add_Phone" />
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

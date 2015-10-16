@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Claims_Get_ByRole_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,6 +68,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\Roles_Get_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\User_Get_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

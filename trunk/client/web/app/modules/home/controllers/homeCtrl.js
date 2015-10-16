@@ -25,6 +25,37 @@ angular.module("home").controller("homeCtrl",["$scope", "security","events", fun
         })
     };
 
+     $scope.ddSelectOptions = [
+        {
+            text: 'Option1',
+            value: 'a value'
+        },
+        {
+            text: 'Option2',
+            value: 'another value',
+            someprop: 'somevalue'
+        },
+        {
+            // Any option with divider set to true will be a divider
+            // in the menu and cannot be selected.
+            divider: true
+        },
+        {
+            // Any divider option with a 'text' property will
+            // behave similarly to a divider and cannot be selected.
+            divider: true,
+            text: 'divider label'
+        },
+        {
+            // Example of an option with the 'href' property
+            text: 'Option4',
+            href: '#option4'
+        }
+    ];
+
+    $scope.ddSelectSelected = {};
+    
+
 
     init();
 	
