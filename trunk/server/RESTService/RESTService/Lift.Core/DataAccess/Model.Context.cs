@@ -150,15 +150,11 @@ namespace Lift.Core.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Add", idParameter, fNameParameter, lNameParameter, mNameParameter, dOBParameter, pOBParameter, currentUserIdParameter, addressIDParameter, address1Parameter, address2Parameter, cityParameter, stateParameter, zipParameter, countryParameter);
         }
     
-        public virtual ObjectResult<User_Get_Result> User_Get(string fName, string mName, string lName, Nullable<System.DateTime> dOB, string pOB, string email, string phoneNumber, string userId)
+        public virtual ObjectResult<User_Get_Result> User_Get(string fName, string lName, Nullable<System.DateTime> dOB, string pOB, string email, string phoneNumber, string userId)
         {
             var fNameParameter = fName != null ?
                 new ObjectParameter("FName", fName) :
                 new ObjectParameter("FName", typeof(string));
-    
-            var mNameParameter = mName != null ?
-                new ObjectParameter("MName", mName) :
-                new ObjectParameter("MName", typeof(string));
     
             var lNameParameter = lName != null ?
                 new ObjectParameter("LName", lName) :
@@ -184,7 +180,7 @@ namespace Lift.Core.DataAccess
                 new ObjectParameter("UserId", userId) :
                 new ObjectParameter("UserId", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User_Get_Result>("User_Get", fNameParameter, mNameParameter, lNameParameter, dOBParameter, pOBParameter, emailParameter, phoneNumberParameter, userIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User_Get_Result>("User_Get", fNameParameter, lNameParameter, dOBParameter, pOBParameter, emailParameter, phoneNumberParameter, userIdParameter);
         }
     
         public virtual int User_Add_Email(Nullable<System.Guid> id, Nullable<System.Guid> currentUserId, string email, string emailType, Nullable<bool> isPrimaryEmail)

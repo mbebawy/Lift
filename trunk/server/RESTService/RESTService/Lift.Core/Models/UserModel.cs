@@ -30,13 +30,15 @@ namespace Lift.Core.Models
         public Nullable<System.Guid> CreateUserId { get; set; }
         public Nullable<System.Guid> UpdateUserId { get; set; }
         public Nullable<int> UserTypeId { get; set; }
-        public string Pin { get; set; }
+     
         public Nullable<int> RoleId { get; set; }
         public List<Claim> Claims { get; set; }
         public string PlaceOfBirth { get; set; }
         
         public List<Phone> Phones { get; set; }
         public List<Email> Emails { get; set; }
+        public string Email { get; set; }
+        public string MainPhone { get; set; }
         
     }
 }

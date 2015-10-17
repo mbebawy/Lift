@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\UsersAdapter.cs" />
     <Compile Include="DataAccess\Claims_Get_ByRole_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

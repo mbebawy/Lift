@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SaintsCoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SaintsCoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="Claims_Get_ByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="roleId" Type="int" Mode="In" />
         </Function>
@@ -65,7 +65,6 @@
         </Function>
         <Function Name="User_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FName" Type="nvarchar" Mode="In" />
-          <Parameter Name="MName" Type="nvarchar" Mode="In" />
           <Parameter Name="LName" Type="nvarchar" Mode="In" />
           <Parameter Name="DOB" Type="date" Mode="In" />
           <Parameter Name="POB" Type="nvarchar" Mode="In" />
@@ -115,7 +114,6 @@
           </FunctionImport>
           <FunctionImport Name="User_Get" ReturnType="Collection(SaintsCoreModel.User_Get_Result)">
             <Parameter Name="FName" Mode="In" Type="String" />
-            <Parameter Name="MName" Mode="In" Type="String" />
             <Parameter Name="LName" Mode="In" Type="String" />
             <Parameter Name="DOB" Mode="In" Type="DateTime" />
             <Parameter Name="POB" Mode="In" Type="String" />

@@ -1,4 +1,5 @@
-﻿using Lift.Core.DataAccess;
+﻿using Lift.Core.Adapters;
+using Lift.Core.DataAccess;
 using Lift.Core.Models;
 using Lift.Core.ServiceRequests;
 using System;
@@ -17,11 +18,13 @@ namespace Lift.Core.Repostories
         public List<UserModel> GetUsers(GetUsersRequest req, Guid currentUser)
         {
             var users = new List<UserModel>();
-            users.Add(new UserModel
+            using (var _db = new CoreEntities())
             {
-                FirstName = "Mina",
-                LastName = "Botros 1"
-            });
+               users = (from u in _db.User_Get(req.FirstName, req.LastName,null, null, null, null, null)
+                       select UsersAdapter.ToClientUser(u)).ToList();
+
+               
+            }
             return users;
         }
 

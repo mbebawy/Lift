@@ -43,7 +43,7 @@ namespace RESTService.Auth
             IdentityUser us = new IdentityUser
             {
                 UserName = userModel.UserName,
-                Id = userModel.UserId.ToString()
+               // Id = userModel.UserId.ToString()
                 
                
             };

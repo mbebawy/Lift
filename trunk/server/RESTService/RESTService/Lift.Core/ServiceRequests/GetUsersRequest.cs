@@ -9,5 +9,7 @@ namespace Lift.Core.ServiceRequests
     public class GetUsersRequest
     {
         public string Keywords { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
