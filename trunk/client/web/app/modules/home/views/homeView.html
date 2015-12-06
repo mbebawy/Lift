@@ -1,16 +1,48 @@
 <div ng-controller="homeCtrl">
-    <div class="navbar navbar-app navbar-absolute-top navbar-brand-center"><!-- Top Navbar -->
+    <div class="row"><!-- Top Navbar -->
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
-        <div class="btn-group pull-left" yield-to="navbarAction" ng-show="activeView.url !== 'modules/login/views/loginView.html'">
-            <div class="btn btn-navbar"><a ng-click="onBack()">Back</a>
-            </div>
-        </div>
-        <div class="navbar-brand navbar-brand-center" yield-to="title">
-            <span>{{activeView.displayName}}</span>
+              <a class="navbar-brand"> <span>{{activeView.displayName}}</span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+             
+             
+              <ul class="nav navbar-nav navbar-right">
+                <li ><a ng-click="onBack()">Back <span class="sr-only">Back</span></a></li>
+                <li><a ng-repeat="op in activeView.viewOptions" ng-click="viewOptionClicked(op)">{{op.text}}</a></li>
+                
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
+
+
+
+
+<!--
+        <div class="col-xs-12 col-md-8">
+            <div class="btn-group pull-left" yield-to="navbarAction" ng-show="activeView.url !== 'modules/login/views/loginView.html'">
+                <div class="btn btn-navbar"><a ng-click="onBack()">Back</a>
+                </div>
+            </div>
+            <div class=" text-center" yield-to="title">
+                <h4>{{activeView.displayName}}</h4>
+            </div>
         </div>
-
     
-
+-->
        <!--<div dropdown-select="ddSelectOptions"
         dropdown-model="ddSelectSelected"
         dropdown-item-label="text" >
@@ -38,11 +70,11 @@
 
     </div>
 
-    <div class="navbar navbar-app navbar-absolute-bottom"><!-- Bottom Navbar --></div>
+    <div class="row"><!-- Bottom Navbar --></div>
 
     <!-- App body -->
 
-    <div class='app-body scrollable' style="background-color: #ffffff">
+    <div class='app-body scrollable' style="background-color: #ffffff;">
         <div class="scrollable-content">
             <div class="app-content" data-ng-include="activeView.url"></div>
         </div>

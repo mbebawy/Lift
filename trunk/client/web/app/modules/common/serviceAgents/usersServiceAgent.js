@@ -32,6 +32,17 @@ angular.module("common").service("usersServiceAgent", ["baseService","$q", funct
         return deferred.promise;
 
     };
+    self.updateUser = function(user){
+        var deferred = $q.defer();
+
+        
+        baseService.postRequest("Users", toServiceUser(user)).then(function(user){
+            deferred.resolve(user);
+        }, function(error){
+            deferred.reject(status);
+        });
+        return deferred.promise;
+    }
 
     var toServiceUser = function(cu){
         return {

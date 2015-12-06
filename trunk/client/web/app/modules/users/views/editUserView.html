@@ -1,5 +1,6 @@
-<div ng-controller="userDetailsCtrl" ng-init="init(user)">
-    <form class="form-horizontal" style="padding:5px: overflow-y: auto" >
+<div ng-controller="userDetailsCtrl" ng-init="init(activeView)" style="display: flex; " class="scrollable">
+    <div class="scrollable-content col-xs-12" >
+    <form class="form-horizontal " style="padding:5px: overflow-y: auto"  >
         <div class="form-group">
             <label  class="col-xs-4 control-label">Email</label>
             <div class="col-xs-8">
@@ -9,61 +10,61 @@
         <div class="form-group">
             <label  class="col-xs-4 control-label">Phone</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Phone" ng-model="user.mainPhone">
+                <input type="text" class="form-control"  placeholder="Phone" ng-model="user.mainPhone">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">First Name</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="First Name" ng-model="user.firstName">
+                <input type="text" class="form-control"  placeholder="First Name" ng-model="user.firstName">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Last Name</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Last Name" ng-model="user.lastName">
+                <input type="text" class="form-control"  placeholder="Last Name" ng-model="user.lastName">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Address</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="user.address1">
+                <input type="text" class="form-control" placeholder="address1"  ng-model="user.address1">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">City</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="City" ng-model="user.city">
+                <input type="text" class="form-control"  placeholder="City" ng-model="user.city">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">State</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="State" ng-model="user.city">
+                <input type="text" class="form-control"  placeholder="State" ng-model="user.state">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Zip</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Zip" ng-model="user.zip">
+                <input type="text" class="form-control"  placeholder="Zip" ng-model="user.zip">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Country</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Country" ng-model="user.country">
+                <input type="text" class="form-control"  placeholder="Country" ng-model="user.country">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Date of Birth</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Date of Birth" ng-model="user.dateOfBirth">
+                <input type="text" class="form-control"  placeholder="Date of Birth" ng-model="user.dateOfBirth">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Place of Birth</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Place of Birth" ng-model="user.placeOfBirth">
+                <input type="text" class="form-control"  placeholder="Place of Birth" ng-model="user.placeOfBirth">
             </div>
         </div>
        <!-- <div class="form-group">
@@ -76,9 +77,10 @@
             </div>
         </div>-->
         <div class="form-group">
-            <div class="col-xs-4 control-label center-block">
-                <button type="submit" class="btn btn-primary pull-right" ng-click="save()">Register</button>
+            <div class="col-xs-4 control-label pull-right">
+                <button type="submit" class="btn btn-primary pull-right" ng-click="save()">Save</button>
             </div>
         </div>
     </form>
+    </div>
 </div>

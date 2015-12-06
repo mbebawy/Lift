@@ -79,11 +79,11 @@
     <Property Type="String" Name="Description" Nullable="true" />
   </ComplexType>
   <ComplexType Name="User_Get_Result">
-    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="Guid" Name="Id" Nullable="false" />
     <Property Type="String" Name="FirstName" Nullable="false" MaxLength="250" />
     <Property Type="String" Name="LastName" Nullable="false" MaxLength="250" />
     <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
     <Property Type="DateTime" Name="DOB" Nullable="true" />
     <Property Type="String" Name="PlaceOfBirth" Nullable="true" MaxLength="50" />
   </ComplexType>

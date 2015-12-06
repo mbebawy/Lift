@@ -1,4 +1,6 @@
 angular.module("home").controller("homeCtrl",["$scope", "security","events", function($scope, security, events){
+    var self = this;
+    self.historyViews = [];
     var init = function(){
 
         $scope.views = [{
@@ -20,7 +22,7 @@ angular.module("home").controller("homeCtrl",["$scope", "security","events", fun
             }
         }, true);
         events.subscribeToEvent($scope, "mainContentViewChanged", function(view){
-            $scope.prevView = angular.copy($scope.activeView);
+            self.historyViews.push(angular.copy($scope.activeView));
             $scope.activeView = view;
         })
     };
@@ -52,10 +54,16 @@ angular.module("home").controller("homeCtrl",["$scope", "security","events", fun
             href: '#option4'
         }
     ];
+    $scope.viewOptionClicked = function(op){
+        op.value();
+    }
 
     $scope.ddSelectSelected = {};
     
-
+    $scope.onBack = function(){
+        $scope.activeView = self.historyViews[self.historyViews.length-1];
+        self.historyViews.splice(1, self.historyViews.length-1)
+    }
 
     init();
 	

@@ -16,7 +16,7 @@ namespace Lift.Core.Adapters
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                UserId = new Guid(user.Id),
+                UserId = user.Id,
                 PlaceOfBirth = user.PlaceOfBirth,
                 DateOfBirth = (DateTime)user.DOB,
                 Email = user.Email,

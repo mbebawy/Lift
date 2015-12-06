@@ -69,7 +69,7 @@ namespace Lift.Core.Repostories
 
         }
 
-        public void UpdateUser(UserModel user)
+        public void UpdateUser(UserModel user, Guid currentUserId)
         {
 
         }

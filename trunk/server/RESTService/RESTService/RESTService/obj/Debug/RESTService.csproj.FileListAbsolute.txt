@@ -40,9 +40,6 @@ M:\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\System.Web.Htt
 M:\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.csprojResolveAssemblyReference.cache
 M:\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.dll
 M:\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.pdb
-M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.csprojResolveAssemblyReference.cache
-M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.dll
-M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.pdb
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\RESTService.dll.config
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\RESTService.dll
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\RESTService.pdb
@@ -82,3 +79,6 @@ M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\System.Ne
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\System.Web.Http.xml
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\System.Web.Http.Owin.xml
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\bin\System.Web.Http.WebHost.xml
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.csprojResolveAssemblyReference.cache
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.dll
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\RESTService\obj\Debug\RESTService.pdb

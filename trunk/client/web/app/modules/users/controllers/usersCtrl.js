@@ -23,6 +23,15 @@ angular.module("users").controller("usersCtrl", ["$scope", "usersServiceAgent", 
     };
     $scope.userSelected = function(user){
         $scope.selectedUser = user;
+
+          var view = {
+                url: "modules/users/views/editUserView.html",
+                displayName: "Update User",
+                payload: user,
+                viewOptions: [{text:'Add User', value: $scope.addUser}]
+            };
+        events.publishEvent("mainContentViewChanged", view);
+
     };
     $scope.addUser = function(){
         var view = {
@@ -31,6 +40,7 @@ angular.module("users").controller("usersCtrl", ["$scope", "usersServiceAgent", 
             };
         events.publishEvent("mainContentViewChanged", view);
     };
+
     init();
 
 }]);
