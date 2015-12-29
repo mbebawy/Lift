@@ -2,7 +2,7 @@ angular.module("common").service("security", [function(){
     'user strict';
     var self = this;
     //var server = "24.62.238.189";
-    var server = "65.96.87.220";
+    var server = "bebawy-pc";
     self.token = null;
 
     self.publicUser = {

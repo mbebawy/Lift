@@ -9,7 +9,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Phones_Add" FunctionName="SaintsCoreModel.Store.Phones_Add" />
     <FunctionImportMapping FunctionImportName="Roles_Get" FunctionName="SaintsCoreModel.Store.Roles_Get">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SaintsCoreModel.Roles_Get_Result">
@@ -38,5 +37,54 @@
     <FunctionImportMapping FunctionImportName="User_Add_Email" FunctionName="SaintsCoreModel.Store.User_Add_Email" />
     <FunctionImportMapping FunctionImportName="User_Add_Occupation" FunctionName="SaintsCoreModel.Store.User_Add_Occupation" />
     <FunctionImportMapping FunctionImportName="User_Add_Phone" FunctionName="SaintsCoreModel.Store.User_Add_Phone" />
+    <FunctionImportMapping FunctionImportName="UserAddress_GET" FunctionName="SaintsCoreModel.Store.UserAddress_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.UserAddress_GET_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Address_Add" FunctionName="SaintsCoreModel.Store.Address_Add" />
+    <FunctionImportMapping FunctionImportName="Email_Update" FunctionName="SaintsCoreModel.Store.Email_Update" />
+    <FunctionImportMapping FunctionImportName="User_Update" FunctionName="SaintsCoreModel.Store.User_Update" />
+    <FunctionImportMapping FunctionImportName="Address_Update" FunctionName="SaintsCoreModel.Store.Address_Update" />
+    <FunctionImportMapping FunctionImportName="Email_Add" FunctionName="SaintsCoreModel.Store.Email_Add" />
+    <FunctionImportMapping FunctionImportName="Email_Get" FunctionName="SaintsCoreModel.Store.Email_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.Email_Get_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+          <ScalarProperty Name="IsPrimaryEmail" ColumnName="IsPrimaryEmail" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Phone_Get" FunctionName="SaintsCoreModel.Store.Phone_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.Phone_Get_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneType" ColumnName="PhoneType" />
+          <ScalarProperty Name="PhoneDescription" ColumnName="PhoneDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Phone_Update" FunctionName="SaintsCoreModel.Store.Phone_Update" />
+    <FunctionImportMapping FunctionImportName="UserRelation_Add" FunctionName="SaintsCoreModel.Store.UserRelation_Add" />
+    <FunctionImportMapping FunctionImportName="UserRelations_Get" FunctionName="SaintsCoreModel.Store.UserRelations_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SaintsCoreModel.UserRelations_Get_Result">
+          <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+          <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+          <ScalarProperty Name="RelationType" ColumnName="RelationType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

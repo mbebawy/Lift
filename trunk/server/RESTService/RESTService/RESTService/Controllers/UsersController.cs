@@ -21,13 +21,20 @@ namespace RESTService.Controllers
         private UserManager<IdentityUser> _userManager;
         [HttpPost]
         [Authorize]
-        public List<UserModel> GetUsers(GetUsersRequest request)
+        public List<UserModel> GetUsers(PostUsersRequest request)
         {
             
             var identity = User.Identity;
             var userID = Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(identity);
-
-            return _repo.GetUsers(request, UserId);
+            if (!request.IsUpdate)
+            {
+                return _repo.GetUsers(request, UserId);
+            }
+            else
+            {
+                _repo.UpdateUser(request.User, UserId);
+                return null;
+            }
         }
         [HttpPut]
         [Authorize]
@@ -36,5 +43,6 @@ namespace RESTService.Controllers
             user.UserId = Guid.NewGuid();
             _repo.CreateUser(user, UserId);
         }
+       
     }
 }

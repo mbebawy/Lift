@@ -13,7 +13,7 @@ namespace Lift.Core.DataAccess
     
     public partial class User_Get_Result
     {
-        public System.Guid Id { get; set; }
+        public Nullable<System.Guid> Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }

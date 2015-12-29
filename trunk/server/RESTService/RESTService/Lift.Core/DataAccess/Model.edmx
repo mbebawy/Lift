@@ -5,13 +5,50 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SaintsCoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="Address_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AddressID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Address_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AddressId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Claims_Get_ByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="roleId" Type="int" Mode="In" />
         </Function>
-        <Function Name="Phones_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="Email_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Email_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailType" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPrimaryEmail" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Phone_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="Phone_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="phoneId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneDescription" Type="nvarchar" Mode="In" />
           <Parameter Name="PhoneType" Type="nvarchar" Mode="In" />
-          <Parameter Name="Description" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="Roles_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Session_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -31,13 +68,6 @@
           <Parameter Name="DOB" Type="date" Mode="In" />
           <Parameter Name="POB" Type="nvarchar" Mode="In" />
           <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="AddressID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="Address1" Type="nvarchar" Mode="In" />
-          <Parameter Name="Address2" Type="nvarchar" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="State" Type="nvarchar" Mode="In" />
-          <Parameter Name="Zip" Type="nvarchar" Mode="In" />
-          <Parameter Name="Country" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="User_Add_Email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
@@ -57,8 +87,9 @@
           <Parameter Name="IsCurrentJob" Type="bit" Mode="In" />
         </Function>
         <Function Name="User_Add_Phone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PhoneId" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="PhoneType" Type="nvarchar" Mode="In" />
           <Parameter Name="PhoneDescription" Type="nvarchar" Mode="In" />
@@ -70,7 +101,29 @@
           <Parameter Name="POB" Type="nvarchar" Mode="In" />
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
-          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="User_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DOB" Type="date" Mode="In" />
+          <Parameter Name="PlaceOfBirth" Type="nvarchar" Mode="In" />
+          <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UserAddress_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UserRelation_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="toUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="relationType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UserRelations_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fromUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="toUserId" Type="uniqueidentifier" Mode="In" />
         </Function>
         <EntityContainer Name="SaintsCoreModelStoreContainer" />
       </Schema></edmx:StorageModels>
@@ -82,6 +135,7 @@
           <Parameter Name="roleId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Phones_Add">
+            <Parameter Name="PhoneId" Mode="In" Type="Guid" />
             <Parameter Name="PhoneNumber" Mode="In" Type="String" />
             <Parameter Name="PhoneType" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
@@ -104,13 +158,6 @@
             <Parameter Name="DOB" Mode="In" Type="DateTime" />
             <Parameter Name="POB" Mode="In" Type="String" />
             <Parameter Name="currentUserId" Mode="In" Type="Guid" />
-            <Parameter Name="AddressID" Mode="In" Type="Guid" />
-            <Parameter Name="Address1" Mode="In" Type="String" />
-            <Parameter Name="Address2" Mode="In" Type="String" />
-            <Parameter Name="City" Mode="In" Type="String" />
-            <Parameter Name="State" Mode="In" Type="String" />
-            <Parameter Name="Zip" Mode="In" Type="String" />
-            <Parameter Name="Country" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="User_Get" ReturnType="Collection(SaintsCoreModel.User_Get_Result)">
             <Parameter Name="FName" Mode="In" Type="String" />
@@ -119,7 +166,8 @@
             <Parameter Name="POB" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="PhoneNumber" Mode="In" Type="String" />
-            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="currentUserId" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="User_Add_Email">
             <Parameter Name="Id" Mode="In" Type="Guid" />
@@ -139,11 +187,75 @@
             <Parameter Name="IsCurrentJob" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="User_Add_Phone">
-            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
             <Parameter Name="currentUserId" Mode="In" Type="Guid" />
+            <Parameter Name="PhoneId" Mode="In" Type="Guid" />
             <Parameter Name="PhoneNumber" Mode="In" Type="String" />
             <Parameter Name="PhoneType" Mode="In" Type="String" />
             <Parameter Name="PhoneDescription" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserAddress_GET" ReturnType="Collection(SaintsCoreModel.UserAddress_GET_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Address_Add">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="AddressID" Mode="In" Type="Guid" />
+            <Parameter Name="Address1" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Email_Update">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="EmailType" Mode="In" Type="String" />
+            <Parameter Name="IsPrimaryEmail" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="User_Update">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="MiddleName" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="PlaceOfBirth" Mode="In" Type="String" />
+            <Parameter Name="currentUserId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Address_Update">
+            <Parameter Name="AddressId" Mode="In" Type="Guid" />
+            <Parameter Name="Address1" Mode="In" Type="String" />
+            <Parameter Name="Address2" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Email_Add">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailAddress" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Email_Get" ReturnType="Collection(SaintsCoreModel.Email_Get_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Phone_Get" ReturnType="Collection(SaintsCoreModel.Phone_Get_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="Phone_Update">
+            <Parameter Name="phoneId" Mode="In" Type="Guid" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="PhoneDescription" Mode="In" Type="String" />
+            <Parameter Name="PhoneType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserRelation_Add">
+            <Parameter Name="fromUserId" Mode="In" Type="Guid" />
+            <Parameter Name="toUserId" Mode="In" Type="Guid" />
+            <Parameter Name="relationType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserRelations_Get" ReturnType="Collection(SaintsCoreModel.UserRelations_Get_Result)">
+            <Parameter Name="fromUserId" Mode="In" Type="Guid" />
+            <Parameter Name="toUserId" Mode="In" Type="Guid" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Claims_Get_ByRole_Result">
@@ -155,14 +267,40 @@
           <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="Description" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="UserAddress_GET_Result">
+          <Property Type="Guid" Name="Id" Nullable="true" />
+          <Property Type="String" Name="Address1" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Address2" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Email_Get_Result">
+          <Property Type="Guid" Name="Id" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="EmailType" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsPrimaryEmail" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="User_Get_Result">
-          <Property Type="Guid" Name="Id" Nullable="false" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="250" />
+          <Property Type="Guid" Name="Id" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Email" Nullable="true" MaxLength="250" />
           <Property Type="DateTime" Name="DOB" Nullable="true" />
           <Property Type="String" Name="PlaceOfBirth" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Phone_Get_Result">
+          <Property Type="Guid" Name="Id" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhoneType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PhoneDescription" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="UserRelations_Get_Result">
+          <Property Type="Guid" Name="FromUserId" Nullable="false" />
+          <Property Type="Guid" Name="ToUserId" Nullable="false" />
+          <Property Type="String" Name="RelationType" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -178,7 +316,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Phones_Add" FunctionName="SaintsCoreModel.Store.Phones_Add" />
           <FunctionImportMapping FunctionImportName="Roles_Get" FunctionName="SaintsCoreModel.Store.Roles_Get">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SaintsCoreModel.Roles_Get_Result">
@@ -207,6 +344,55 @@
           <FunctionImportMapping FunctionImportName="User_Add_Email" FunctionName="SaintsCoreModel.Store.User_Add_Email" />
           <FunctionImportMapping FunctionImportName="User_Add_Occupation" FunctionName="SaintsCoreModel.Store.User_Add_Occupation" />
           <FunctionImportMapping FunctionImportName="User_Add_Phone" FunctionName="SaintsCoreModel.Store.User_Add_Phone" />
+          <FunctionImportMapping FunctionImportName="UserAddress_GET" FunctionName="SaintsCoreModel.Store.UserAddress_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.UserAddress_GET_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Address_Add" FunctionName="SaintsCoreModel.Store.Address_Add" />
+          <FunctionImportMapping FunctionImportName="Email_Update" FunctionName="SaintsCoreModel.Store.Email_Update" />
+          <FunctionImportMapping FunctionImportName="User_Update" FunctionName="SaintsCoreModel.Store.User_Update" />
+          <FunctionImportMapping FunctionImportName="Address_Update" FunctionName="SaintsCoreModel.Store.Address_Update" />
+          <FunctionImportMapping FunctionImportName="Email_Add" FunctionName="SaintsCoreModel.Store.Email_Add" />
+          <FunctionImportMapping FunctionImportName="Email_Get" FunctionName="SaintsCoreModel.Store.Email_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.Email_Get_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+                <ScalarProperty Name="IsPrimaryEmail" ColumnName="IsPrimaryEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Phone_Get" FunctionName="SaintsCoreModel.Store.Phone_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.Phone_Get_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneType" ColumnName="PhoneType" />
+                <ScalarProperty Name="PhoneDescription" ColumnName="PhoneDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Phone_Update" FunctionName="SaintsCoreModel.Store.Phone_Update" />
+          <FunctionImportMapping FunctionImportName="UserRelation_Add" FunctionName="SaintsCoreModel.Store.UserRelation_Add" />
+          <FunctionImportMapping FunctionImportName="UserRelations_Get" FunctionName="SaintsCoreModel.Store.UserRelations_Get">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SaintsCoreModel.UserRelations_Get_Result">
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="RelationType" ColumnName="RelationType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

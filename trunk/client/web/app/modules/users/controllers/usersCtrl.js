@@ -28,7 +28,7 @@ angular.module("users").controller("usersCtrl", ["$scope", "usersServiceAgent", 
                 url: "modules/users/views/editUserView.html",
                 displayName: "Update User",
                 payload: user,
-                viewOptions: [{text:'Add User', value: $scope.addUser}]
+                viewOptions: [{text:'Add Child', value: $scope.addUser}, {text:'Add Partner', value: $scope.addUser}]
             };
         events.publishEvent("mainContentViewChanged", view);
 

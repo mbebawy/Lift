@@ -4,13 +4,13 @@
         <div class="form-group">
             <label  class="col-xs-4 control-label">Email</label>
             <div class="col-xs-8">
-                <input type="email" class="form-control"  placeholder="Email" ng-model="user.email">
+                <input type="text" class="form-control"  placeholder="Email" ng-model="user.emails[0].emailAddress">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Phone</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="Phone" ng-model="user.mainPhone">
+                <input type="text" class="form-control"  placeholder="Phone" ng-model="user.phones[0].phoneNumber">
             </div>
         </div>
         <div class="form-group">
@@ -28,54 +28,63 @@
         <div class="form-group">
             <label  class="col-xs-4 control-label">Address</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="address1"  ng-model="user.address1">
+                <input type="text" class="form-control" placeholder="address1"  ng-model="address.address1">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">City</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="City" ng-model="user.city">
+                <input type="text" class="form-control"  placeholder="City" ng-model="address.city">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">State</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="State" ng-model="user.state">
+                <input type="text" class="form-control"  placeholder="State" ng-model="address.state">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Zip</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="Zip" ng-model="user.zip">
+                <input type="text" class="form-control"  placeholder="Zip" ng-model="address.zip">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Country</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="Country" ng-model="user.country">
+                <input type="text" class="form-control"  placeholder="Country" ng-model="address.country">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Date of Birth</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="Date of Birth" ng-model="user.dateOfBirth">
+                <input type="text" class="form-control"  ui-date ui-date-format="DD, d MM, yy" ng-model="user.dateOfBirth">
             </div>
         </div>
         <div class="form-group">
             <label  class="col-xs-4 control-label">Place of Birth</label>
             <div class="col-xs-8">
-                <input type="text" class="form-control"  placeholder="Place of Birth" ng-model="user.placeOfBirth">
+                <input type="text" class="form-control"  placeholder="Place of Birth" name="user.placeOfBirth">
             </div>
         </div>
-       <!-- <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                </div>
-            </div>
-        </div>-->
+        <div class="form-group">
+            <input type="text" class="form-control col-xs-10" style="width: 80%" placeholder="Search for users..">
+            <button class="btn btn-default col-xs-2 pull-right" type="button"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+
+        <div class="form-group">
+           <ul class="list-group">
+              <li class="list-group-item">
+                <span class="badge">Child</span>
+                Maria Bebawy
+              </li>
+              <li class="list-group-item">
+                <span class="badge">Wife</span>
+                Hanan Hanna
+              </li>
+            </ul>
+        </div>
+      
         <div class="form-group">
             <div class="col-xs-4 control-label pull-right">
                 <button type="submit" class="btn btn-primary pull-right" ng-click="save()">Save</button>

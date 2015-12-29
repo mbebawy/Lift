@@ -1,0 +1,10 @@
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\Lift.Core.dll.config
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\Lift.Core.dll
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\Lift.Core.pdb
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\EntityFramework.dll
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\EntityFramework.SqlServer.dll
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\EntityFramework.xml
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Release\EntityFramework.SqlServer.xml
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\obj\Release\Lift.Core.csprojResolveAssemblyReference.cache
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\obj\Release\Lift.Core.dll
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\obj\Release\Lift.Core.pdb

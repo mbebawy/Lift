@@ -1,12 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SaintsCoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="Address_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="AddressID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="State" Type="nvarchar" Mode="In" />
+    <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+    <Parameter Name="Country" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Address_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AddressId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Address1" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address2" Type="nvarchar" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="State" Type="nvarchar" Mode="In" />
+    <Parameter Name="Zip" Type="nvarchar" Mode="In" />
+    <Parameter Name="Country" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="Claims_Get_ByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="roleId" Type="int" Mode="In" />
   </Function>
-  <Function Name="Phones_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="Email_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="EmailID" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="EmailAddress" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Email_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="EmailType" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsPrimaryEmail" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Phone_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="Phone_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="phoneId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="PhoneDescription" Type="nvarchar" Mode="In" />
     <Parameter Name="PhoneType" Type="nvarchar" Mode="In" />
-    <Parameter Name="Description" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Roles_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Session_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -26,13 +63,6 @@
     <Parameter Name="DOB" Type="date" Mode="In" />
     <Parameter Name="POB" Type="nvarchar" Mode="In" />
     <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
-    <Parameter Name="AddressID" Type="uniqueidentifier" Mode="In" />
-    <Parameter Name="Address1" Type="nvarchar" Mode="In" />
-    <Parameter Name="Address2" Type="nvarchar" Mode="In" />
-    <Parameter Name="City" Type="nvarchar" Mode="In" />
-    <Parameter Name="State" Type="nvarchar" Mode="In" />
-    <Parameter Name="Zip" Type="nvarchar" Mode="In" />
-    <Parameter Name="Country" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="User_Add_Email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
@@ -52,8 +82,9 @@
     <Parameter Name="IsCurrentJob" Type="bit" Mode="In" />
   </Function>
   <Function Name="User_Add_Phone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="PhoneId" Type="uniqueidentifier" Mode="In" />
     <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
     <Parameter Name="PhoneType" Type="nvarchar" Mode="In" />
     <Parameter Name="PhoneDescription" Type="nvarchar" Mode="In" />
@@ -65,7 +96,29 @@
     <Parameter Name="POB" Type="nvarchar" Mode="In" />
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
     <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
-    <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="User_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MiddleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="DOB" Type="date" Mode="In" />
+    <Parameter Name="PlaceOfBirth" Type="nvarchar" Mode="In" />
+    <Parameter Name="currentUserId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="UserAddress_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="UserRelation_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromUserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="toUserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="relationType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="UserRelations_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fromUserId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="toUserId" Type="uniqueidentifier" Mode="In" />
   </Function>
   <EntityContainer Name="SaintsCoreModelStoreContainer" />
 </Schema>

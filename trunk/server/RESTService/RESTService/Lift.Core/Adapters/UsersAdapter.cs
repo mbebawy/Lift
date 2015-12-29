@@ -18,9 +18,13 @@ namespace Lift.Core.Adapters
                 LastName = user.LastName,
                 UserId = user.Id,
                 PlaceOfBirth = user.PlaceOfBirth,
-                DateOfBirth = (DateTime)user.DOB,
-                Email = user.Email,
-                MainPhone = user.PhoneNumber
+                DateOfBirth = (DateTime)user.DOB,                
+                MainPhone = user.PhoneNumber,
+                Address = new List<Address>(),
+                Emails = new List<Email>(),
+                Phones = new List<Phone>(),
+                Relations = new List<UserRelation>()
+                
             };
             return u;
         }

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="restservice" />
+  <setParameter name="AuthContext-Web.config Connection String" value="Data Source=108.7.56.117;Initial Catalog=SaintsCore;user id=sa;password=minab11289;" />
+  <setParameter name="CoreEntities-Web.config Connection String" value="metadata=res://*/DataAccess.Model.csdl|res://*/DataAccess.Model.ssdl|res://*/DataAccess.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=108.7.56.117;initial catalog=SaintsCore;user id=sa;password=minab11289;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+</parameters>

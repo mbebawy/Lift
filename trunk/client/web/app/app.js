@@ -4,8 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.version',
-  'mobile-angular-ui',
-  'mobile-angular-ui.core.capture',
+
   'login',
   'common',
     'home',

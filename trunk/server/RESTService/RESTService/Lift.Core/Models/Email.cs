@@ -8,7 +8,7 @@ namespace Lift.Core.Models
 {
     public class Email
     {
-        public int EmailId { get; set; }
+        public Guid? EmailId { get; set; }
         public string EmailAddress { get; set; }
         public string EmailType { get; set; }
     }

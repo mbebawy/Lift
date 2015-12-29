@@ -10,8 +10,11 @@ angular.module("common").service("usersServiceAgent", ["baseService","$q", funct
 
         var data = {
             LastName: args.lastName,
-            FirstName: args.firstName
-        }
+            FirstName: args.firstName,
+            IsUpdate: false,
+            User: null
+
+        };
         baseService.postRequest("Users", data).then(function(users){
             deferred.resolve(users);
         }, function(error){
@@ -34,9 +37,15 @@ angular.module("common").service("usersServiceAgent", ["baseService","$q", funct
     };
     self.updateUser = function(user){
         var deferred = $q.defer();
+        var data = {
+            LastName: null,
+            FirstName: null,
+            IsUpdate: true,
+            User: toServiceUser(user)
 
+        };
         
-        baseService.postRequest("Users", toServiceUser(user)).then(function(user){
+        baseService.postRequest("Users", data).then(function(user){
             deferred.resolve(user);
         }, function(error){
             deferred.reject(status);
@@ -45,7 +54,7 @@ angular.module("common").service("usersServiceAgent", ["baseService","$q", funct
     }
 
     var toServiceUser = function(cu){
-        return {
+        var user = {
             UserId: cu.userId,
             UserName: cu.UserName,
             password: cu.password,
@@ -62,15 +71,78 @@ angular.module("common").service("usersServiceAgent", ["baseService","$q", funct
             Emails: cu.emails,
             Email: cu.email,
             MainPhone: cu.mainPhone,
-            Address1: cu.address1,
-            Address2: cu.address2,
-            Address3: cu.address3,
-            City: cu.city,
-            State: cu.state,
-            Zip: cu.zip,
-            Country: cu.country,
             DateOfBirth: cu.dateOfBirth,
-            PlaceOfBirth: cu.placeOfBirth
+            PlaceOfBirth: cu.placeOfBirth,
+            Address: [],
+            Emails: [],
+            Phones: [],
+            Relations: []
         };
+        if(cu.address !== undefined && cu.address !== null ){
+            for(var i in cu.address){
+                user.Address.push(toServiceAddress(cu.address[i]));
+            }
+        }
+        if(cu.emails !== undefined && cu.emails !== null){
+            for(var i in cu.emails){
+                user.Emails.push(toServiceEmail(cu.emails[i]));
+            }
+        }
+        if(cu.phones !== undefined && cu.phones !== null){
+            for(var i in cu.phones){
+                user.Phones.push(toServicePhone(cu.phones[i]))
+            }
+        }
+        if(cu.relations !== undefined && cu.relations !== null){
+            for(var r in cu.relations){
+                user.Relations.push(toServiceRelation(cu.relations[r]));
+            }
+        }
+        return user;
     };
+    var toServiceAddress = function(add){
+        var address = {
+            Id: add.id,
+            Address1: add.address1,
+            Address2: add.address2,
+            Address3: add.address3,
+            City: add.city,
+            State: add.state,
+            Zip: add.zip,
+            Country: add.country
+        };
+        return address;
+    };
+    var toServiceEmail = function(em){
+        var email = {
+            EmailId: em.emailId,
+            EmailAddress: em.emailAddress,
+            EmailType: em.emailType
+        }
+        return email;
+    };
+    var toServicePhone = function(ph){
+        var phone = {
+            PhoneId: ph.phoneId,
+            IsPrimaryPhone: ph.isPrimaryPhone,
+            PhoneType: ph.phoneType,
+            Description: ph.description,
+            PhoneNumber: ph.phoneNumber
+        };
+        return phone;
+
+    };
+    var toServiceRelation = function(rel){
+        var relation = {
+            ChildId: rel.childId,
+            ParentId: rel.parentId,
+            Type: rel.type,
+            User: null
+
+        };
+        return relation;
+    }
+
+
+ 
 }]);

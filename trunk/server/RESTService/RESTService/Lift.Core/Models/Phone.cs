@@ -8,7 +8,7 @@ namespace Lift.Core.Models
 {
     public class Phone
     {
-        public int PhoneId { get; set; }
+        public Guid PhoneId { get; set; }
         public bool IsPrimaryPhone { get; set; }
         public string PhoneType { get; set; }
         public string Description { get; set; }

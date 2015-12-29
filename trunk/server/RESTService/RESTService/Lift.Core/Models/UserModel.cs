@@ -14,13 +14,7 @@ namespace Lift.Core.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string Address3 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string Country { get; set; }
+        public List<Address> Address { get; set; }
         
         public DateTime DateOfBirth { get; set; }
         public List<string> Occupations { get; set; }
@@ -37,8 +31,9 @@ namespace Lift.Core.Models
         
         public List<Phone> Phones { get; set; }
         public List<Email> Emails { get; set; }
-        public string Email { get; set; }
+       
         public string MainPhone { get; set; }
+        public List<UserRelation> Relations { get; set; }
         
     }
 }

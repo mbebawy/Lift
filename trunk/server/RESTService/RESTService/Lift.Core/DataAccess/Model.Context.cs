@@ -37,8 +37,12 @@ namespace Lift.Core.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Claims_Get_ByRole_Result>("Claims_Get_ByRole", roleIdParameter);
         }
     
-        public virtual int Phones_Add(string phoneNumber, string phoneType, string description)
+        public virtual int Phones_Add(Nullable<System.Guid> phoneId, string phoneNumber, string phoneType, string description)
         {
+            var phoneIdParameter = phoneId.HasValue ?
+                new ObjectParameter("PhoneId", phoneId) :
+                new ObjectParameter("PhoneId", typeof(System.Guid));
+    
             var phoneNumberParameter = phoneNumber != null ?
                 new ObjectParameter("PhoneNumber", phoneNumber) :
                 new ObjectParameter("PhoneNumber", typeof(string));
@@ -51,7 +55,7 @@ namespace Lift.Core.DataAccess
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Phones_Add", phoneNumberParameter, phoneTypeParameter, descriptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Phones_Add", phoneIdParameter, phoneNumberParameter, phoneTypeParameter, descriptionParameter);
         }
     
         public virtual ObjectResult<Roles_Get_Result> Roles_Get()
@@ -89,7 +93,7 @@ namespace Lift.Core.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Session_Edit", sessionIdParameter, isLoggedParameter, isExpiredParameter);
         }
     
-        public virtual int User_Add(Nullable<System.Guid> id, string fName, string lName, string mName, Nullable<System.DateTime> dOB, string pOB, Nullable<System.Guid> currentUserId, Nullable<System.Guid> addressID, string address1, string address2, string city, string state, string zip, string country)
+        public virtual int User_Add(Nullable<System.Guid> id, string fName, string lName, string mName, Nullable<System.DateTime> dOB, string pOB, Nullable<System.Guid> currentUserId)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("Id", id) :
@@ -119,38 +123,10 @@ namespace Lift.Core.DataAccess
                 new ObjectParameter("currentUserId", currentUserId) :
                 new ObjectParameter("currentUserId", typeof(System.Guid));
     
-            var addressIDParameter = addressID.HasValue ?
-                new ObjectParameter("AddressID", addressID) :
-                new ObjectParameter("AddressID", typeof(System.Guid));
-    
-            var address1Parameter = address1 != null ?
-                new ObjectParameter("Address1", address1) :
-                new ObjectParameter("Address1", typeof(string));
-    
-            var address2Parameter = address2 != null ?
-                new ObjectParameter("Address2", address2) :
-                new ObjectParameter("Address2", typeof(string));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stateParameter = state != null ?
-                new ObjectParameter("State", state) :
-                new ObjectParameter("State", typeof(string));
-    
-            var zipParameter = zip != null ?
-                new ObjectParameter("Zip", zip) :
-                new ObjectParameter("Zip", typeof(string));
-    
-            var countryParameter = country != null ?
-                new ObjectParameter("Country", country) :
-                new ObjectParameter("Country", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Add", idParameter, fNameParameter, lNameParameter, mNameParameter, dOBParameter, pOBParameter, currentUserIdParameter, addressIDParameter, address1Parameter, address2Parameter, cityParameter, stateParameter, zipParameter, countryParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Add", idParameter, fNameParameter, lNameParameter, mNameParameter, dOBParameter, pOBParameter, currentUserIdParameter);
         }
     
-        public virtual ObjectResult<User_Get_Result> User_Get(string fName, string lName, Nullable<System.DateTime> dOB, string pOB, string email, string phoneNumber, string userId)
+        public virtual ObjectResult<User_Get_Result> User_Get(string fName, string lName, Nullable<System.DateTime> dOB, string pOB, string email, string phoneNumber, Nullable<System.Guid> userId, Nullable<System.Guid> currentUserId)
         {
             var fNameParameter = fName != null ?
                 new ObjectParameter("FName", fName) :
@@ -176,11 +152,15 @@ namespace Lift.Core.DataAccess
                 new ObjectParameter("PhoneNumber", phoneNumber) :
                 new ObjectParameter("PhoneNumber", typeof(string));
     
-            var userIdParameter = userId != null ?
+            var userIdParameter = userId.HasValue ?
                 new ObjectParameter("UserId", userId) :
-                new ObjectParameter("UserId", typeof(string));
+                new ObjectParameter("UserId", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User_Get_Result>("User_Get", fNameParameter, lNameParameter, dOBParameter, pOBParameter, emailParameter, phoneNumberParameter, userIdParameter);
+            var currentUserIdParameter = currentUserId.HasValue ?
+                new ObjectParameter("currentUserId", currentUserId) :
+                new ObjectParameter("currentUserId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User_Get_Result>("User_Get", fNameParameter, lNameParameter, dOBParameter, pOBParameter, emailParameter, phoneNumberParameter, userIdParameter, currentUserIdParameter);
         }
     
         public virtual int User_Add_Email(Nullable<System.Guid> id, Nullable<System.Guid> currentUserId, string email, string emailType, Nullable<bool> isPrimaryEmail)
@@ -245,15 +225,19 @@ namespace Lift.Core.DataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Add_Occupation", idParameter, currentUserIdParameter, occupationIDParameter, compnayNameParameter, jobTitleParameter, startDateParameter, endDateParameter, isCurrentJobParameter);
         }
     
-        public virtual int User_Add_Phone(Nullable<System.Guid> id, Nullable<System.Guid> currentUserId, string phoneNumber, string phoneType, string phoneDescription)
+        public virtual int User_Add_Phone(Nullable<System.Guid> userId, Nullable<System.Guid> currentUserId, Nullable<System.Guid> phoneId, string phoneNumber, string phoneType, string phoneDescription)
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(System.Guid));
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
     
             var currentUserIdParameter = currentUserId.HasValue ?
                 new ObjectParameter("currentUserId", currentUserId) :
                 new ObjectParameter("currentUserId", typeof(System.Guid));
+    
+            var phoneIdParameter = phoneId.HasValue ?
+                new ObjectParameter("PhoneId", phoneId) :
+                new ObjectParameter("PhoneId", typeof(System.Guid));
     
             var phoneNumberParameter = phoneNumber != null ?
                 new ObjectParameter("PhoneNumber", phoneNumber) :
@@ -267,7 +251,226 @@ namespace Lift.Core.DataAccess
                 new ObjectParameter("PhoneDescription", phoneDescription) :
                 new ObjectParameter("PhoneDescription", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Add_Phone", idParameter, currentUserIdParameter, phoneNumberParameter, phoneTypeParameter, phoneDescriptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Add_Phone", userIdParameter, currentUserIdParameter, phoneIdParameter, phoneNumberParameter, phoneTypeParameter, phoneDescriptionParameter);
+        }
+    
+        public virtual ObjectResult<UserAddress_GET_Result> UserAddress_GET(Nullable<System.Guid> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserAddress_GET_Result>("UserAddress_GET", userIdParameter);
+        }
+    
+        public virtual int Address_Add(Nullable<System.Guid> userId, Nullable<System.Guid> addressID, string address1, string address2, string city, string state, string zip, string country)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
+    
+            var addressIDParameter = addressID.HasValue ?
+                new ObjectParameter("AddressID", addressID) :
+                new ObjectParameter("AddressID", typeof(System.Guid));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("Address1", address1) :
+                new ObjectParameter("Address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("Address2", address2) :
+                new ObjectParameter("Address2", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stateParameter = state != null ?
+                new ObjectParameter("State", state) :
+                new ObjectParameter("State", typeof(string));
+    
+            var zipParameter = zip != null ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Address_Add", userIdParameter, addressIDParameter, address1Parameter, address2Parameter, cityParameter, stateParameter, zipParameter, countryParameter);
+        }
+    
+        public virtual int Email_Update(Nullable<System.Guid> id, string email, string emailType, Nullable<bool> isPrimaryEmail)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var emailTypeParameter = emailType != null ?
+                new ObjectParameter("EmailType", emailType) :
+                new ObjectParameter("EmailType", typeof(string));
+    
+            var isPrimaryEmailParameter = isPrimaryEmail.HasValue ?
+                new ObjectParameter("IsPrimaryEmail", isPrimaryEmail) :
+                new ObjectParameter("IsPrimaryEmail", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Email_Update", idParameter, emailParameter, emailTypeParameter, isPrimaryEmailParameter);
+        }
+    
+        public virtual int User_Update(Nullable<System.Guid> id, string firstName, string lastName, string middleName, Nullable<System.DateTime> dOB, string placeOfBirth, Nullable<System.Guid> currentUserId)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(System.Guid));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var middleNameParameter = middleName != null ?
+                new ObjectParameter("MiddleName", middleName) :
+                new ObjectParameter("MiddleName", typeof(string));
+    
+            var dOBParameter = dOB.HasValue ?
+                new ObjectParameter("DOB", dOB) :
+                new ObjectParameter("DOB", typeof(System.DateTime));
+    
+            var placeOfBirthParameter = placeOfBirth != null ?
+                new ObjectParameter("PlaceOfBirth", placeOfBirth) :
+                new ObjectParameter("PlaceOfBirth", typeof(string));
+    
+            var currentUserIdParameter = currentUserId.HasValue ?
+                new ObjectParameter("currentUserId", currentUserId) :
+                new ObjectParameter("currentUserId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("User_Update", idParameter, firstNameParameter, lastNameParameter, middleNameParameter, dOBParameter, placeOfBirthParameter, currentUserIdParameter);
+        }
+    
+        public virtual int Address_Update(Nullable<System.Guid> addressId, string address1, string address2, string city, string state, string zip, string country)
+        {
+            var addressIdParameter = addressId.HasValue ?
+                new ObjectParameter("AddressId", addressId) :
+                new ObjectParameter("AddressId", typeof(System.Guid));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("Address1", address1) :
+                new ObjectParameter("Address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("Address2", address2) :
+                new ObjectParameter("Address2", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stateParameter = state != null ?
+                new ObjectParameter("State", state) :
+                new ObjectParameter("State", typeof(string));
+    
+            var zipParameter = zip != null ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Address_Update", addressIdParameter, address1Parameter, address2Parameter, cityParameter, stateParameter, zipParameter, countryParameter);
+        }
+    
+        public virtual int Email_Add(Nullable<System.Guid> userId, Nullable<System.Guid> emailID, string emailAddress)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
+    
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(System.Guid));
+    
+            var emailAddressParameter = emailAddress != null ?
+                new ObjectParameter("EmailAddress", emailAddress) :
+                new ObjectParameter("EmailAddress", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Email_Add", userIdParameter, emailIDParameter, emailAddressParameter);
+        }
+    
+        public virtual ObjectResult<Email_Get_Result> Email_Get(Nullable<System.Guid> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Email_Get_Result>("Email_Get", userIdParameter);
+        }
+    
+        public virtual ObjectResult<Phone_Get_Result> Phone_Get(Nullable<System.Guid> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Phone_Get_Result>("Phone_Get", userIdParameter);
+        }
+    
+        public virtual int Phone_Update(Nullable<System.Guid> phoneId, string phoneNumber, string phoneDescription, string phoneType)
+        {
+            var phoneIdParameter = phoneId.HasValue ?
+                new ObjectParameter("phoneId", phoneId) :
+                new ObjectParameter("phoneId", typeof(System.Guid));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("PhoneNumber", phoneNumber) :
+                new ObjectParameter("PhoneNumber", typeof(string));
+    
+            var phoneDescriptionParameter = phoneDescription != null ?
+                new ObjectParameter("PhoneDescription", phoneDescription) :
+                new ObjectParameter("PhoneDescription", typeof(string));
+    
+            var phoneTypeParameter = phoneType != null ?
+                new ObjectParameter("PhoneType", phoneType) :
+                new ObjectParameter("PhoneType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Phone_Update", phoneIdParameter, phoneNumberParameter, phoneDescriptionParameter, phoneTypeParameter);
+        }
+    
+        public virtual int UserRelation_Add(Nullable<System.Guid> fromUserId, Nullable<System.Guid> toUserId, string relationType)
+        {
+            var fromUserIdParameter = fromUserId.HasValue ?
+                new ObjectParameter("fromUserId", fromUserId) :
+                new ObjectParameter("fromUserId", typeof(System.Guid));
+    
+            var toUserIdParameter = toUserId.HasValue ?
+                new ObjectParameter("toUserId", toUserId) :
+                new ObjectParameter("toUserId", typeof(System.Guid));
+    
+            var relationTypeParameter = relationType != null ?
+                new ObjectParameter("relationType", relationType) :
+                new ObjectParameter("relationType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRelation_Add", fromUserIdParameter, toUserIdParameter, relationTypeParameter);
+        }
+    
+        public virtual ObjectResult<UserRelations_Get_Result> UserRelations_Get(Nullable<System.Guid> fromUserId, Nullable<System.Guid> toUserId)
+        {
+            var fromUserIdParameter = fromUserId.HasValue ?
+                new ObjectParameter("fromUserId", fromUserId) :
+                new ObjectParameter("fromUserId", typeof(System.Guid));
+    
+            var toUserIdParameter = toUserId.HasValue ?
+                new ObjectParameter("toUserId", toUserId) :
+                new ObjectParameter("toUserId", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserRelations_Get_Result>("UserRelations_Get", fromUserIdParameter, toUserIdParameter);
         }
     }
 }
