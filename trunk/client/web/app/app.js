@@ -4,7 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.version',
-
+  'ui.bootstrap',
   'login',
   'common',
     'home',

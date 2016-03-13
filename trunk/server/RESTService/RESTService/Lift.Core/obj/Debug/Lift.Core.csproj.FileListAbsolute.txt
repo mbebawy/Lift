@@ -16,3 +16,4 @@ M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Debug\Entit
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\bin\Debug\EntityFramework.SqlServer.xml
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\obj\Debug\Lift.Core.dll
 M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\obj\Debug\Lift.Core.pdb
+M:\Lift\Lift\Lift\trunk\server\RESTService\RESTService\Lift.Core\obj\Debug\Lift.Core.csprojResolveAssemblyReference.cache

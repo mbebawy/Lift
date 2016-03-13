@@ -16,6 +16,9 @@ angular.module("common").service("usersServiceAgent", ["baseService","$q", funct
 
         };
         baseService.postRequest("Users", data).then(function(users){
+            for(var i in users){
+                users[i].fullName = users[i].firstName + " " + users[i].lastName;
+            }
             deferred.resolve(users);
         }, function(error){
             deferred.reject(status);
