@@ -3,8 +3,11 @@
  */
 angular.module("users").controller("userDetailsCtrl", ["$scope", "usersServiceAgent", "events", function($scope, usersServiceAgent, events){
    
+    $scope.users = [];
+    $scope.relatedUsers = []
 	$scope.user = {};
 	$scope.address = {};
+	$scope.firstNameSearchKeyword = null;
 	var self = this;
 	 $scope.dateOptions = {
 						    changeYear: true,
@@ -23,6 +26,25 @@ angular.module("users").controller("userDetailsCtrl", ["$scope", "usersServiceAg
 		else{
 			self.isNewUser = true;
 		}
+
+		$scope.$watch("firstNameSearchKeyword", function(newVal, oldVal){
+			var nameList = $scope.firstNameSearchKeyword.split(",");
+			if(nameList.length > 1)
+				var args={            
+		            firstName: nameList[1],
+		            lastName: nameList[1]
+		        }
+	        else{
+	        	var args={            
+		            lastName: $scope.firstNameSearchKeyword
+		        }
+	        }
+	        usersServiceAgent.getUsers(args).then(function(users){
+	            $scope.users = users;
+	        }, function(error){
+
+	        })
+			}, true);
     };
     $scope.save = function(){
     	var user = angular.copy($scope.user);
@@ -60,6 +82,9 @@ angular.module("users").controller("userDetailsCtrl", ["$scope", "usersServiceAg
                 displayName: "Add User"
             };
         events.publishEvent("mainContentViewChanged", view);
+    };
+    $scope.userSelected = function(item, model, label){
+		$scope.relatedUsers.push(item);
     };
 
 }]);
