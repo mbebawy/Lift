@@ -58,12 +58,8 @@
         <div class="form-group">
             <label  class="col-xs-4 control-label">Date of Birth</label>
             <div class="col-xs-8">
-                 <input type="text" class="form-control"  />
-
-                  <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
-                  </span>
-
+                 <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd" ng-model="dateOfBirth" />
+               
 
             </div>
         </div>
@@ -73,17 +69,48 @@
                 <input type="text" class="form-control"  placeholder="Place of Birth" name="user.placeOfBirth">
             </div>
         </div>
+         <div class="form-group">
+            <label class="col-xs-4 control-label">Gender</label>
+          
+             <div class="btn-group col-xs-8" style="margin-top:-7px" uib-dropdown>
+                  <button id="btn-append-to-body" type="button" class="btn" uib-dropdown-toggle>
+                    {{child.gender == null? 'Select Gender': child.gender}}<span class="caret"></span>
+                  </button>
+                  <ul uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                    <li role="menuitem"><a ng-click="child.gender = 'Male'">Male</a></li>                    
+                    <li role="menuitem"><a ng-click="child.gender = 'Female'">Female</a></li>
+                    
+                   
+                  </ul>
+                 
+            </div>
+        </div>
         <div class="form-group">
            
              <input type="text" class="form-control col-xs-10" ng-model="firstNameSearchKeyword" placeholder="Last Name, First Name" uib-typeahead="user.fullName  for user in users | limitTo:8"  typeahead-on-select="userSelected($item, $model, $label)" >
+
+
             
         </div>
+       
 
         <div class="form-group">
            <ul class="list-group">
               <li class="list-group-item" ng-repeat =" child in relatedUsers">
-                <span class="badge">Child</span>
+               
                 {{child.firstName }} {{child.lastName}}
+
+                 <div class="btn-group pull-right" style="margin-top:-7px" uib-dropdown>
+                  <button id="btn-append-to-body" type="button" class="btn" uib-dropdown-toggle>
+                    {{child.userTypeId == null? 'Select Relation': child.userTypeId}}<span class="caret"></span>
+                  </button>
+                  <ul uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                    <li role="menuitem"><a ng-click="child.userTypeId = 1">Wife</a></li>                    
+                    <li role="menuitem"><a ng-click="child.userTypeId = 2">Husband</a></li>
+                    <li role="menuitem"><a ng-click="child.userTypeId = 3">Child</a></li>
+                   
+                  </ul>
+                </div>
               </li>
              
             </ul>
