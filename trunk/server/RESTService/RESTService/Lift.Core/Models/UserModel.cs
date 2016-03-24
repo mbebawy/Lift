@@ -33,6 +33,7 @@ namespace Lift.Core.Models
         public List<Email> Emails { get; set; }
        
         public string MainPhone { get; set; }
+        public string Gender { get; set; }
         public List<UserRelation> Relations { get; set; }
         
     }
